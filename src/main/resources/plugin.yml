@@ -1,0 +1,7 @@
+name: House
+version: ${project.version}
+main: co.mc520.house.House
+api-version: 1.13
+authors: [Mical]
+commands:
+  house:
