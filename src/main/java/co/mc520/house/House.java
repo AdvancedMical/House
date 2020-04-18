@@ -24,14 +24,26 @@ public final class House extends JavaPlugin implements Listener {
         super.onDisable();
     }
 
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args, PlayerEvent event) {
-        Player player = event.getPlayer();
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        Player player = (Player)sender;
         if (command.getName().equalsIgnoreCase("house")){
             if (!(sender instanceof Player)){
-                sender.sendMessage("&9&l家园系统&e&l>> &e只有玩家才可以执行此指令");
+                sender.sendMessage("§9§l家园系统§e§l>> §e只有玩家才可以执行此指令");
             }else {
                 if (sender.hasPermission("house.use")) {
-                    Bukkit.getServer().dispatchCommand((CommandSender) player, getConfig().getString("command"));
+                    Bukkit.getServer().dispatchCommand((CommandSender) player, getConfig().getString("house"));
+                } else {
+                    sender.sendMessage("&9&l家园系统&c&l>> &c您没有权限这样做");
+                }
+            }
+        }
+        if (command.getName().equalsIgnoreCase("gethouse")) {
+            if (!(sender instanceof Player)) {
+                sender.sendMessage("§9§l家园系统§e§l>> §e只有玩家才可以执行此指令");
+            } else {
+                if (sender.hasPermission("house.use")) {
+                    Bukkit.getServer().dispatchCommand((CommandSender) player, getConfig().getString("gethouse"));
                 } else {
                     sender.sendMessage("&9&l家园系统&c&l>> &c您没有权限这样做");
                 }
